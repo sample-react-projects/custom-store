@@ -25,7 +25,7 @@ export function useSelector<T, V>(selectorFn: (state: T) => V) {
       listeners = listeners.filter((listener) => listener !== setValue);
     };
   }, []);
-  console.log(globalState);
+
   return selectorFn(globalState as T);
 }
 
