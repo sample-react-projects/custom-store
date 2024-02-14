@@ -1,0 +1,14 @@
+.button {
+  all: unset;
+  background-color: #fcd34d;
+  cursor: pointer;
+  font-size: 0.85rem;
+  font-weight: bold;
+  letter-spacing: 0.1rem;
+  text-transform: uppercase;
+  padding: 0.25rem 0.5rem;
+
+  &:hover {
+    background-color: #fbbf24;
+  }
+}
