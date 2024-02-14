@@ -17,10 +17,7 @@ const counterMutators = {
   },
 };
 
-export const counterSlice = createSlice<typeof INITIAL_COUNTER_STATE>(
-  "counter",
+createSlice<CounterState, CounterActions>(
   INITIAL_COUNTER_STATE,
   counterMutators
 );
-
-export type counterActions = keyof typeof counterMutators;
