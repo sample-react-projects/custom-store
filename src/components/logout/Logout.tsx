@@ -1,12 +1,10 @@
-import { useDispatch } from "react-redux";
-import { authenticationActions } from "../../store/authentication";
+import { AuthenticationActions } from "../../store/authentication";
 import Button from "../ui/button/Button";
+import { dispatch } from "../../store";
 
 const Logout: React.FC<{}> = () => {
-  const dispatch = useDispatch();
-
   function handleLogout() {
-    dispatch(authenticationActions.logout());
+    dispatch<AuthenticationActions, undefined>("authentication", "logout");
   }
 
   return <Button onClick={handleLogout}>Logout</Button>;

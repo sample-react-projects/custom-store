@@ -1,19 +1,34 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice } from ".";
 
-const INITIAL_AUTHENTICATION_STATE = { isAuthenticated: false };
+type AuthenticationState = {
+  isAuthenticated: boolean;
+};
 
-const authenticationSlice = createSlice({
-  name: "authentication",
-  initialState: INITIAL_AUTHENTICATION_STATE,
-  reducers: {
-    login: (state) => {
-      state.isAuthenticated = true;
-    },
-    logout: (state) => {
-      state.isAuthenticated = false;
-    },
+type AuthenticationMutations = {
+  login: () => AuthenticationState;
+  logout: () => AuthenticationState;
+};
+
+export type AuthenticationActions = keyof AuthenticationMutations;
+export type AuthenticationPayload = Partial<AuthenticationState>;
+
+const INITIAL_AUTHENTICATION_STATE: AuthenticationState = {
+  isAuthenticated: false,
+};
+
+const authenticationMutators: AuthenticationMutations = {
+  login: () => {
+    return { isAuthenticated: true };
   },
-});
+  logout: () => {
+    return { isAuthenticated: false };
+  },
+};
 
-export const authenticationActions = authenticationSlice.actions;
-export const authenticationReducers = authenticationSlice.reducer;
+export function createAuthenticationSlice() {
+  createSlice<AuthenticationState, AuthenticationMutations>(
+    "authentication",
+    INITIAL_AUTHENTICATION_STATE,
+    authenticationMutators
+  );
+}

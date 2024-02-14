@@ -1,8 +1,7 @@
-import { Store } from "../../store";
+import { Store, useSelector } from "../../store";
 import Counter from "../counter/Counter";
 import Header from "../header/Header";
 import "./App.module.scss";
-import { useSelector } from "react-redux";
 
 function App() {
   const inAuthenticated = useSelector<Store, boolean>(
