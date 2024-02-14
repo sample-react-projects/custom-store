@@ -4,6 +4,11 @@ type AuthenticationState = {
   isAuthenticated: boolean;
 };
 
+type AuthenticationActions = {
+  login: () => AuthenticationState;
+  logout: () => AuthenticationState;
+};
+
 const INITIAL_AUTHENTICATION_STATE: AuthenticationState = {
   isAuthenticated: false,
 };
