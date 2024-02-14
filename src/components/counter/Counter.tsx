@@ -1,19 +1,17 @@
-import { useDispatch, useSelector } from "react-redux";
 import Button from "../ui/button/Button";
 import styles from "./Counter.module.scss";
-import { Store } from "../../store";
-import { counterActions } from "../../store/counter";
+import { Store, dispatch, useSelector } from "../../store";
+import { CounterActions } from "../../store/counter";
 
 const Counter: React.FC<{}> = () => {
-  const dispatch = useDispatch();
   const counter = useSelector<Store, number>((state) => state.counter.counter);
 
   function handleCounterDecrement() {
-    dispatch(counterActions.decrement());
+    dispatch<CounterActions, undefined>("counter", "decrement");
   }
 
   function handleCounterIncrement() {
-    dispatch(counterActions.increment());
+    dispatch<CounterActions, undefined>("counter", "increment");
   }
 
   return (
