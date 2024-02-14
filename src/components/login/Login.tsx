@@ -1,14 +1,12 @@
-import { useDispatch } from "react-redux";
 import Button from "../ui/button/Button";
-import { authenticationActions } from "../../store/authentication";
+import { AuthenticationActions } from "../../store/authentication";
+import { dispatch } from "../../store";
 
 const Login: React.FC<{}> = () => {
-  const dispatch = useDispatch();
-
   function handleLogin() {
-    dispatch(authenticationActions.login());
+    dispatch<AuthenticationActions, undefined>("authentication", "login");
   }
-  
+
   return <Button onClick={handleLogin}>Login</Button>;
 };
 
