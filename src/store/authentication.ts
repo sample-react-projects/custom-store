@@ -1,14 +1,26 @@
 import { createSlice } from ".";
 
-const INITIAL_AUTHENTICATION_STATE = { isAuthenticated: false };
+type AuthenticationState = {
+  isAuthenticated: boolean;
+};
 
-export const authenticationSlice = createSlice<
-  typeof INITIAL_AUTHENTICATION_STATE
->("authentication", INITIAL_AUTHENTICATION_STATE, {
+const INITIAL_AUTHENTICATION_STATE: AuthenticationState = {
+  isAuthenticated: false,
+};
+
+const authenticationMutators = {
   login: () => {
     return { isAuthenticated: true };
   },
   logout: () => {
     return { isAuthenticated: false };
   },
-});
+};
+
+export const authenticationSlice = createSlice<AuthenticationState>(
+  "authentication",
+  INITIAL_AUTHENTICATION_STATE,
+  authenticationMutators
+);
+
+export type authenticationActions = keyof typeof authenticationMutators;
