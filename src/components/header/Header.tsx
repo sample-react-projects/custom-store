@@ -1,8 +1,7 @@
-import { useSelector } from "react-redux";
 import Login from "../login/Login";
 import styles from "./Header.module.scss";
 import Logout from "../logout/Logout";
-import { Store } from "../../store";
+import { Store, useSelector } from "../../store";
 
 const Header: React.FC<{}> = () => {
   const isAuthenticated = useSelector<Store, boolean>(
