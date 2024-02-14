@@ -13,7 +13,7 @@ const INITIAL_AUTHENTICATION_STATE: AuthenticationState = {
   isAuthenticated: false,
 };
 
-const authenticationMutators = {
+const authenticationMutators: AuthenticationActions = {
   login: () => {
     return { isAuthenticated: true };
   },
@@ -22,10 +22,7 @@ const authenticationMutators = {
   },
 };
 
-export const authenticationSlice = createSlice<AuthenticationState>(
-  "authentication",
+createSlice<AuthenticationState, AuthenticationActions>(
   INITIAL_AUTHENTICATION_STATE,
   authenticationMutators
 );
-
-export type authenticationActions = keyof typeof authenticationMutators;
