@@ -4,16 +4,19 @@ type AuthenticationState = {
   isAuthenticated: boolean;
 };
 
-type AuthenticationActions = {
+type AuthenticationMutations = {
   login: () => AuthenticationState;
   logout: () => AuthenticationState;
 };
+
+export type AuthenticationActions = keyof AuthenticationMutations;
+export type AuthenticationPayload = Partial<AuthenticationState>;
 
 const INITIAL_AUTHENTICATION_STATE: AuthenticationState = {
   isAuthenticated: false,
 };
 
-const authenticationMutators: AuthenticationActions = {
+const authenticationMutators: AuthenticationMutations = {
   login: () => {
     return { isAuthenticated: true };
   },
@@ -22,7 +25,10 @@ const authenticationMutators: AuthenticationActions = {
   },
 };
 
-createSlice<AuthenticationState, AuthenticationActions>(
-  INITIAL_AUTHENTICATION_STATE,
-  authenticationMutators
-);
+export function createAuthenticationSlice() {
+  createSlice<AuthenticationState, AuthenticationMutations>(
+    "authentication",
+    INITIAL_AUTHENTICATION_STATE,
+    authenticationMutators
+  );
+}

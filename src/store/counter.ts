@@ -4,7 +4,7 @@ type CounterState = {
   counter: number;
 };
 
-type CounterActions = {
+type CounterMutations = {
   increment: (state: CounterState) => {
     counter: number;
   };
@@ -12,6 +12,9 @@ type CounterActions = {
     counter: number;
   };
 };
+
+export type CounterActions = keyof CounterMutations;
+export type CounterPayload = Partial<CounterState>;
 
 const INITIAL_COUNTER_STATE: CounterState = {
   counter: 0,
@@ -26,7 +29,10 @@ const counterMutators = {
   },
 };
 
-createSlice<CounterState, CounterActions>(
-  INITIAL_COUNTER_STATE,
-  counterMutators
-);
+export function createCounterSlice() {
+  createSlice<CounterState, CounterMutations>(
+    "counter",
+    INITIAL_COUNTER_STATE,
+    counterMutators
+  );
+}
